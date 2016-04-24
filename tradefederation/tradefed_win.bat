@@ -28,10 +28,10 @@ for /f "delims=" %%j in ('java -version 2^>^&1 ^| findstr /i """1.7"') do (
     set JAVA_VERSION=7
 )
 
-if "%JAVA_VERSION%" == "" (
-    echo "Wrong java version. 1.7 is required."
-    exit /B
-)
+rem if "%JAVA_VERSION%" == "" (
+rem     echo "Wrong java version. 1.7 is required."
+rem     exit /B
+rem )
 
 :: check debug flag and set up remote debugging
 if not "%TF_DEBUG%"=="" (
