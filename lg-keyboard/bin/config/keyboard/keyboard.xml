@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration description="Run continous LG keyboard tests">
+    <!-- uiautomator -->
+    <target_preparer class="com.android.tradefed.targetprep.InstallApkSetup">
+        <option name="apk-path" value="tools/KeyboardDriverApp.apk" />
+        <option name="apk-path" value="tools/KeyboardUiTesting.apk" />
+    </target_preparer>
+    <test class="com.android.tradefed.testtype.InstrumentationTest">
+        <option name="rerun" value="false" />
+        <option name="runner" value="android.support.test.runner.AndroidJUnitRunner" />
+        <option name="package" value="com.goodluck.keyboard.uitest.test" />
+        <option name="class" value="com.goodluck.keyboard.uitest.EnglishQwertyTest" />
+    </test>
+    
+    <!-- result reporter -->
+    <result_reporter class="com.lge.keyboard.result.KeyboardTestResultReporter">
+        <option name="sender" value="lge.keyboard@gmail.com" />
+        <option name="destination" value="lge.keyboard@gmail.com" />
+    </result_reporter>
+</configuration>
