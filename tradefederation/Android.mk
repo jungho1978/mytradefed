@@ -71,7 +71,7 @@ include $(CLEAR_VARS)
 # Note that this is incompatible with `make dist`.  If you want to make
 # the distribution, you must run `tapas` with the individual target names.
 .PHONY: tradefed-all
-tradefed-all: tradefed tradefed-tests tf-prod-tests tf-prod-metatests tradefed_win script_help verify lg-keyboard javamail
+tradefed-all: tradefed tradefed-tests tf-prod-tests tf-prod-metatests tradefed_win script_help verify lg-keyboard
 
 # ====================================
 include $(CLEAR_VARS)
@@ -89,7 +89,7 @@ include $(call all-makefiles-under,$(LOCAL_PATH))
 # Zip up the built files and dist it as tradefed.zip
 ifneq (,$(filter tradefed tradefed-all, $(TARGET_BUILD_APPS)))
 
-tradefed_dist_host_jars := tradefed tradefed-tests tf-prod-tests emmalib loganalysis loganalysis-tests tf-remote-client lg-keyboard javamail
+tradefed_dist_host_jars := tradefed tradefed-tests tf-prod-tests emmalib loganalysis loganalysis-tests tf-remote-client javamail lg-keyboard
 tradefed_dist_host_jar_files := $(foreach m, $(tradefed_dist_host_jars), $(HOST_OUT_JAVA_LIBRARIES)/$(m).jar)
 
 tradefed_dist_host_exes := tradefed.sh tradefed_win.bat script_help.sh verify.sh
