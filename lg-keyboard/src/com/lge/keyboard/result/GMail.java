@@ -18,6 +18,9 @@ import com.sun.mail.smtp.SMTPTransport;
 import static javax.mail.Message.RecipientType.TO;
 
 public class GMail implements IEmail {
+    private static final String PLAIN = "text/plain";
+    private static final String HTML = "text/html";
+
     private static final String HOST = "smtp.gmail.com";
     private static final String USER = "lge.keyboard@gmail.com";
     private static final String PASSWORD = "lgekeyboard";
@@ -26,6 +29,7 @@ public class GMail implements IEmail {
     private List<InternetAddress> mDestinations = new ArrayList<InternetAddress>();
     private String mSubject;
     private String mBody;
+    private String mContentType;
 
     @Override
     public void setSender(String sender) {
@@ -48,6 +52,11 @@ public class GMail implements IEmail {
     }
 
     @Override
+    public void setHtml(boolean isHtml) {
+        mContentType = isHtml ? HTML : PLAIN;
+    }
+
+    @Override
     public void setSubject(String subject) {
         mSubject = subject;
     }
@@ -61,7 +70,7 @@ public class GMail implements IEmail {
     public void send() {
         Properties props = new Properties();
         props.put("mail.smtp.host", HOST);
-        props.put("mail.smtp.starttls.enable", true);   // Gmail only
+        props.put("mail.smtp.starttls.enable", true);
         props.put("mail.smtp.auth", true);
 
         if (mSender == null) {
@@ -97,7 +106,7 @@ public class GMail implements IEmail {
                 msg.addRecipient(TO, destination);
             }
             msg.setSubject(mSubject);
-            msg.setText(mBody);
+            msg.setContent(mBody, mContentType);
         } catch (MessagingException e) {
             e.printStackTrace();
         }

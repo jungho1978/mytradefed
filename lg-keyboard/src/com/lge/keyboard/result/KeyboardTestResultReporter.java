@@ -28,6 +28,8 @@ public class KeyboardTestResultReporter extends KeyboardTestListener {
         mEmail = email;
     }
 
+    private static final String HTML_BODY = "<html><body><h1>Sample Body</h1></body></html>";
+
     @Override
     public void invocationEnded(long elapsedTime) {
         super.invocationEnded(elapsedTime);
@@ -35,7 +37,8 @@ public class KeyboardTestResultReporter extends KeyboardTestListener {
         mEmail.setSender(mSender);
         mEmail.setDestinations(mDestinations);
         mEmail.setSubject("Subject");
-        mEmail.setBody("Body");
+        mEmail.setHtml(true);
+        mEmail.setBody(HTML_BODY);
         mEmail.send();
     }
 

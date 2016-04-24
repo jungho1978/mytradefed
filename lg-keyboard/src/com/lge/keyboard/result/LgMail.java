@@ -15,6 +15,12 @@ public class LgMail implements IEmail {
         // TODO Auto-generated method stub
         
     }
+    
+    @Override
+    public void setHtml(boolean isHtml) {
+        // TODO Auto-generated method stub
+        
+    }
 
     @Override
     public void setSubject(String subject) {
